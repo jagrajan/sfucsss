@@ -1,0 +1,21 @@
+{
+  "name": "sfucsss",
+  "description": "SFU CSS Website Candidate",
+  "main": "app.js",
+  "authors": [
+    "Jagrajan Bhullar"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}

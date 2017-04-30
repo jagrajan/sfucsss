@@ -1,0 +1,32 @@
+extends auth_layout
+
+block content
+    h2.ui.green.header
+        .content Log In
+    if errors.length
+        .ui.error.message
+            .header There were some errors
+            ul.list
+                each error in errors
+                    li= error
+    if infos.length
+        .ui.info.message
+            .header Information
+            ul.list
+                each info in infos
+                    li= info
+    form.ui.large.form(method='post')
+        .ui.stacked.segment
+            .field
+                .ui.left.icon.input
+                    i.user.icon
+                    input(type='text', name='email', placeholder='Email')
+            .field
+                .ui.left.icon.input
+                    i.lock.icon
+                    input(type='password', name='password', placeholder='Password')
+            button.ui.large.button.submit.fluid.green(type='submit') Log In
+    .ui.message Need an account?&nbsp;
+        a(href="/users/signup") Sign Up!
+    .ui.message
+        a(href="/") Get me out of here!

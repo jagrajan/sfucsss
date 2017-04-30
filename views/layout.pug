@@ -1,0 +1,37 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/semantic/dist/semantic.css')
+    body
+        .ui.page.grid
+            .computer.tablet.only.row
+                .ui.menu.navbar(style='margin-top:20px; width:100%')
+                    a.brand.item(href='/') SFU CSSS
+                    a.active.item Home
+                    a.item Another One
+                    .right.menu
+                        if currentUser
+                            a.item= currentUser.displayName()
+                            a.item(href='/users/logout') Sign Out
+                        else
+                            a.item(href='/users/login') Log In
+            .mobile.only.narrow.row
+                .ui.navbar.menu(style='width:100%')
+                    a.brand.item(href='/') SFU CSSS
+                    div.right.menu.open
+                        a.menu.item
+                            i.content.icon
+                .ui.vertical.navbar.menu(style='width:100%; margin-top:-15px')
+                    a.active.item Home
+                    a.item Link
+                    if currentUser
+                        a.item= currentUser.displayName()
+                        a.item(href='/users/logout') Sign Out
+                    else
+                        a.item(href='/users/login') Log In
+            block content
+
+        script(src='/jquery/dist/jquery.min.js')
+        script(src='/semantic/dist/semantic.js')
+        script(src='/javascripts/navbar.js')
