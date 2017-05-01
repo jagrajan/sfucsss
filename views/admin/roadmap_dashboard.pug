@@ -1,6 +1,13 @@
 extends ../layout
 
 block content
+    if infos.length
+        .row
+            .ui.info.message.column
+                .header Information
+                ul.list
+                    each info in infos
+                        li= info
     .row
         .ui.stackable.two.column.grid
             .column

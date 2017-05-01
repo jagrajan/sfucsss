@@ -1,6 +1,13 @@
 extends ../layout
 
 block content
+    if errors.length
+        .row
+            .ui.error.message.column
+                .header There were some errors
+                ul.list
+                    each error in errors
+                        li= error
     .row
         form.ui.form.column(method='post')
             h4.ui.dividing.header Add Course
@@ -8,13 +15,13 @@ block content
                 label Course Information
                 .fields
                     .field.five.wide
-                        input(type='text', name='code', placeholder='Course Code (ex: MACM 101)')
+                        input(type='text', name='code', placeholder='Course Code (ex: MACM 101)', value=(course ? course.code : ''))
                     .field.three.wide
-                        input(type='number', name='credits', placeholder='Number of credits')
+                        input(type='number', name='credits', placeholder='Number of credits', value=(course ? course.credits : ''))
                     .field.eight.wide
-                        input(type='text', name='name' placeholder='Course Name (ex: Discrete Mathematics)')
+                        input(type='text', name='name' placeholder='Course Name (ex: Discrete Mathematics)', value=(course ? course.name : ''))
             .field
                 label Course Description
-                textarea(name='description', placeholder='Optional course description...')
+                textarea(name='description', placeholder='Optional course description...')= course ? course.description : ''
             button.ui.button.green(type='submit') Add Course
             a.ui.button.red(href='/admin/roadmap-dashboard') Cancel
