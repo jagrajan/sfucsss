@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+    .row
+        .ui.stackable.two.column.grid
+            .column
+                .ui.stackable.two.column.grid.padded
+                    .column
+                        h3.header Courses
+                    .column
+                        a.ui.labeled.icon.button.fluid.green(href='/admin/add-course')
+                            i.plus.icon
+                            | Add Course
+                .ui.icon.input.fluid
+                    input(type='text', placeholder='Search...')
+                    i.search.icon
+                .ui.segment
+                    h4 CMPT 276
+                    p Everybody love this classs
+                    .ui.buttons
+                        button.ui.button.red Delete
+                        .or
+                        button.ui.button.yellow Edit
+                .ui.segment
+                    h4 CMPT 276
+                    p Everybody love this classs
+            .column
+                h3.header Sections

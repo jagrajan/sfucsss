@@ -9,6 +9,9 @@ html
                 .ui.menu.navbar(style='margin-top:20px; width:100%')
                     a.brand.item(href='/') SFU CSSS
                     a.active.item Home
+                    if currentUser
+                        if currentUser.role == 'site-admin'
+                            a.item(href='/admin/roadmap-dashboard') Road-map Editor
                     a.item Another One
                     .right.menu
                         if currentUser

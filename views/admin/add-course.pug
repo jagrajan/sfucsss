@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+    .row
+        form.ui.form.column(method='post')
+            h4.ui.dividing.header Add Course
+            .field
+                label Course Information
+                .fields
+                    .field.five.wide
+                        input(type='text', name='code', placeholder='Course Code (ex: MACM 101)')
+                    .field.three.wide
+                        input(type='number', name='credits', placeholder='Number of credits')
+                    .field.eight.wide
+                        input(type='text', name='name' placeholder='Course Name (ex: Discrete Mathematics)')
+            .field
+                label Course Description
+                textarea(name='description', placeholder='Optional course description...')
+            button.ui.button.green(type='submit') Add Course
+            a.ui.button.red(href='/admin/roadmap-dashboard') Cancel
