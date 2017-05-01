@@ -1,21 +1,33 @@
 var express = require('express');
-var passport = require('passport');
 var async = require('async');
 
 var Course = require('../models/course');
+var Section = require('../models/section');
+
+var sectionRouter = require('./admin_section');
 
 var router = express.Router();
 
+router.use('/section', sectionRouter);
+
 //GET request for dashboard
 router.get('/roadmap_dashboard', function (req, res, next) {
-    Course.find()
-        .sort([['name', 'descending']])
-        .exec(function (err, list_courses) {
-            if (err) {
-                next(err);
-            }
-            res.render('admin/roadmap_dashboard', {title: 'Roadmap Dashboard', courses: list_courses});
+    async.parallel({
+        courses: function (callback) {
+            Course.find()
+                .exec(callback);
+        },
+        sections: function (callback) {
+            Section.find()
+                .exec(callback);
+        }
+    }, function (err, results) {
+        res.render('admin/roadmap_dashboard', {
+            title: 'Roadmap Dashboard',
+            courses: results.courses,
+            sections: results.sections
         });
+    });
 });
 
 router.get('/add_course', function (req, res, next) {

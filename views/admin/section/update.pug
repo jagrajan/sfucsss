@@ -1,0 +1,43 @@
+extends ../../layout
+
+block content
+    if errors.length
+        .row
+            .ui.error.message.column
+                .header There were some errors
+                ul.list
+                    each error in errors
+                        li= error
+    .row
+        form.ui.form.column(method='post')
+            h4.ui.dividing.header Update Section
+            .ui.grid.stackable
+                .column.twelve.wide.field
+                    label Section Name
+                    input(type='text', name='name' placeholder='Section Name (ex: First Year Math)', value=(section ? section.name : ''))
+                .column.four.wide.field
+                    label Publicly Visible
+                    select.ui.dropdown(name='visible')
+                        if (section && !section.visible)
+                            option(value='true') True
+                            option(value='false', selected='selected') False
+                        else
+                            option(value='true', selected='selected') True
+                            option(value='false') False
+            if (courses && courses.length)
+                .field
+                    label Courses
+                    select.ui.search.dropdown.courses(name='courses', multiple='')
+                        each course in courses
+                            option(value=course._id)= course.code
+            button.ui.button.green(type='submit') Update Section
+            a.ui.button.red(href='/admin/roadmap_dashboard') Cancel
+
+block scripts
+    script(type='text/javascript')
+        |var courses = [
+        if section
+            each course in section.courses
+                | '#{course}',
+        |];
+    script(src='/javascripts/admin/section/update.js')

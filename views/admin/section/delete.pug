@@ -1,0 +1,9 @@
+extends ../../layout
+
+block content
+    .row
+        form.ui.form.column(method='post')
+            h4.ui.dividing.header Are you sure you want to delete this section?
+            h2= section.name
+            button.ui.button.green(type='submit') Delete Section
+            a.ui.button.red(href='/admin/roadmap_dashboard') Back

@@ -35,4 +35,30 @@ block content
                     .ui.segment
                         h4 No courses present
             .column
-                h3.header Sections
+                .ui.stackable.two.column.grid.padded
+                    .column
+                        h3.header Sections
+                    .column
+                        a.ui.labeled.icon.button.fluid.green(href='/admin/section/add')
+                            i.plus.icon
+                            | Add Section
+                .ui.icon.input.fluid
+                    input(type='text', placeholder='Search...')
+                    i.search.icon
+                each section in sections
+                    .ui.segment
+                        h4= section.name
+                        p Visible:
+                            if section.visible
+                                i.checkmark.icon
+                            else
+                                i.remove.icon
+                        .ui.buttons
+                            a(href=section.deleteUrl())
+                                button.ui.button.red Delete
+                            .or
+                            a(href=section.editUrl())
+                                button.ui.button.yellow Edit
+                else
+                    .ui.segment
+                        h4 No sections present
