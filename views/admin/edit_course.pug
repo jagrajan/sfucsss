@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+    if errors.length
+        .row
+            .ui.error.message.column
+                .header There were some errors
+                ul.list
+                    each error in errors
+                        li= error
+    .row
+        form.ui.form.column(method='post', action='/admin/edit_course/' + course._id)
+            h4.ui.dividing.header Add Course
+            .field
+                label Course Information
+                .fields
+                    .field.five.wide
+                        input(type='text', name='code', placeholder='Course Code (ex: MACM 101)', value=course.code)
+                    .field.three.wide
+                        input(type='number', name='credits', placeholder='Number of credits', value=course.credits)
+                    .field.eight.wide
+                        input(type='text', name='name' placeholder='Course Name (ex: Discrete Mathematics)', value=course.name)
+            .field
+                label Course Description
+                textarea(name='description', placeholder='Optional course description...')=course.description
+            if (courses && courses.length)
+                .field
+                    label Prerequisites
+                    select.ui.search.dropdown.prerequisites(name='prerequisites', multiple='')
+                        each course_ in courses
+                            option(value=course_._id)= course_.code
+            button.ui.button.yellow(type='submit') Update Course
+            a.ui.button.red(href='/admin/roadmap_dashboard') Cancel
+
+block scripts
+    script(type='text/javascript')
+        | var prerequisites = [
+        if course
+            each prereq in course.prerequisites
+                | '#{prereq}',
+        | ];
+    script(src='/javascripts/admin/add_course.js')

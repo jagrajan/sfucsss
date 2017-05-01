@@ -8,6 +8,14 @@ var courseSchema = mongoose.Schema({
     prerequisites: [{type: mongoose.Schema.ObjectId, ref: 'Course'}]
 });
 
+courseSchema.methods.editUrl = function () {
+    return '/admin/edit_course/' + this._id;
+};
+
+courseSchema.methods.deleteUrl = function () {
+    return '/admin/delete_course/' + this._id;
+};
+
 var Course = mongoose.model('Course', courseSchema);
 
 module.exports = Course;

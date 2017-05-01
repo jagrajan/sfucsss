@@ -15,21 +15,24 @@ block content
                     .column
                         h3.header Courses
                     .column
-                        a.ui.labeled.icon.button.fluid.green(href='/admin/add-course')
+                        a.ui.labeled.icon.button.fluid.green(href='/admin/add_course')
                             i.plus.icon
                             | Add Course
                 .ui.icon.input.fluid
                     input(type='text', placeholder='Search...')
                     i.search.icon
-                .ui.segment
-                    h4 CMPT 276
-                    p Everybody love this classs
-                    .ui.buttons
-                        button.ui.button.red Delete
-                        .or
-                        button.ui.button.yellow Edit
-                .ui.segment
-                    h4 CMPT 276
-                    p Everybody love this classs
+                each course in courses
+                    .ui.segment
+                        h4= course.code
+                        p= course.name
+                        .ui.buttons
+                            a(href=course.deleteUrl())
+                                button.ui.button.red Delete
+                            .or
+                            a(href=course.editUrl())
+                                button.ui.button.yellow Edit
+                else
+                    .ui.segment
+                        h4 No courses present
             .column
                 h3.header Sections

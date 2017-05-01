@@ -11,7 +11,7 @@ html
                     a.active.item Home
                     if currentUser
                         if currentUser.role == 'site-admin'
-                            a.item(href='/admin/roadmap-dashboard') Road-map Editor
+                            a.item(href='/admin/roadmap_dashboard') Road-map Editor
                     a.item Another One
                     .right.menu
                         if currentUser
@@ -38,3 +38,4 @@ html
         script(src='/jquery/dist/jquery.min.js')
         script(src='/semantic/dist/semantic.js')
         script(src='/javascripts/navbar.js')
+        block scripts

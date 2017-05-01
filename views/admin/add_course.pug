@@ -23,5 +23,20 @@ block content
             .field
                 label Course Description
                 textarea(name='description', placeholder='Optional course description...')= course ? course.description : ''
+            if (courses && courses.length)
+                .field
+                    label Prerequisites
+                    select.ui.search.dropdown.prerequisites(name='prerequisites', multiple='')
+                        each course_ in courses
+                            option(value=course_._id)= course_.code
             button.ui.button.green(type='submit') Add Course
-            a.ui.button.red(href='/admin/roadmap-dashboard') Cancel
+            a.ui.button.red(href='/admin/roadmap_dashboard') Cancel
+
+block scripts
+    script(type='text/javascript')
+        |var prerequisites = [
+        if course
+            each prereq in course.prerequisites
+                | '#{prereq}',
+        |];
+    script(src='/javascripts/admin/add_course.js')
